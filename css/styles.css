@@ -13,6 +13,7 @@ font-family: 'Roboto', sans-serif;
     --background-footer-color: #2F303A;
     --footer-text-color: #FFFFFF;
     --social-icon-color: #AFB1B8;
+    --function-animation: cubic-bezier(0.4, 0, 0.2, 1);
 }
 *,
 *::before,
@@ -39,6 +40,9 @@ h6 {
 }
 p {
     margin: 0;
+}
+img {
+    display: block;
 }
 .list {
     list-style: none;
@@ -70,6 +74,9 @@ p {
     font-size: 16px;
     line-height: 1.88;
 
+    transition-property: color, background-color;
+    transition-duration: 250ms;
+    transition-timing-function: var(--function-animation);
 }
 /* Список иконок соц. сетей */
 .social-list {
@@ -85,7 +92,6 @@ p {
     padding: 12px;
 }
 /* ------- */
-
 .button:hover,
 .button:focus {
     color: var(--brend-color);
@@ -169,6 +175,10 @@ header {
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 0.02em;
+
+    transition-property: color;
+    transition-duration: 250ms;
+    transition-timing-function: var(--function-animation);
 }
 .nav-site .link:hover,
 .nav-site .link:focus,
@@ -194,6 +204,21 @@ header {
     vertical-align: text-bottom;
     margin-right: 10px;
     fill: currentColor;
+}
+.active {
+    position: relative;
+}
+.active::after {
+    content:"";
+
+    position: absolute;
+    bottom: -1px;
+
+    display: block;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--brend-color);
 }
 /* -main- */
 /* Герой */
@@ -314,6 +339,15 @@ header {
 }
 .team-icon {
     fill: var(--social-icon-color);
+
+    transition-property: fill;
+    transition-duration: 250ms;
+    transition-timing-function: var(--function-animation);
+}
+.team-link {
+    transition-property: background-color;
+    transition-duration: 250ms;
+    transition-timing-function: var(--function-animation);
 }
 .team-link:hover .team-icon,
 .team-link:focus .team-icon  {
@@ -338,6 +372,10 @@ header {
 .clients-link {
     border: 1px solid var(--social-icon-color);
     border-radius: 4px;
+
+    transition-property: border-color;
+    transition-duration: 250ms;
+    transition-timing-function: var(--function-animation);
 }
 .clients-link:hover,
 .clients-link:focus {
@@ -346,10 +384,14 @@ header {
 .clients-icon {
     display: block;
     padding: 16px 32px;
-    fill: var(--social-icon-color)
+    fill: var(--social-icon-color);
+
+    transition-property: fill;
+    transition-duration: 250ms;
+    transition-timing-function: var(--function-animation);
 }
-.clients-icon:hover,
-.clients-icon:focus {
+.clients-link:hover .clients-icon,
+.clients-link:focus .clients-icon {
     fill: var(--brend-color);
 }
 
@@ -403,6 +445,10 @@ header {
 .footer-soclink {
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.1);
+
+    transition-property: fill, background-color;
+    transition-duration: 250ms;
+    transition-timing-function: var(--function-animation);
 }
 .footer-soclink:hover,
 .footer-soclink:focus {
@@ -411,8 +457,51 @@ header {
 .footer-socicon {
     fill: var(--white-color);
 }
+/* Модальное окно */
 
+.backdrop {
+    position: fixed;
+    top: 0;
 
+    width: 100%;
+    height: 100%;
+    background-color: #21212180;
+}
+.backdrop.is-hidden {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+.modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+    width: 528px;
+    height: 581px;
+    background-color: var(--white-color);
+}
+.close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+
+    color: #000000;
+
+    
+    border-radius: 50%;
+    border: 1px solid #0000001A;
+    
+    background-color: transparent;
+}
+.close-icon {
+    fill: currentColor;
+}
 /* -- Портфолио html -- */
 
 /* фильтр портфолио */
@@ -439,6 +528,11 @@ header {
     line-height: 1.62;
     text-align: center;
     letter-spacing: 0.03em;
+
+
+    transition-property: color, background-color, box-shadow;
+    transition-duration: 250ms;
+    transition-timing-function: var(--function-animation);
 }
 .filter-items + .filter-items {
     margin-left: 8px;
@@ -464,6 +558,45 @@ header {
 .portfolio-element:hover,
 .portfolio-element:focus {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+
+}
+.portfolio-element {
+    transition-property: box-shadow;
+    transition-duration: 250ms;
+    transition-timing-function: var(--function-animation);
+}
+
+.tumb {
+    position: relative;
+    overflow: hidden;
+}
+.desc {
+    position: absolute;
+
+    transform: translateY(0);
+    padding-top: 63px;
+    padding-left: 24px;
+    width: 100%;
+    height: 294px;
+    background-color: #2195f3ee;
+
+    transition-property: transform;
+    transition-duration: 250ms;
+    transition-timing-function: var(--function-animation);
+}
+.desc-text {
+    width: 322px;
+
+    font-size: 18px;
+    line-height: calc(28/18);
+
+    letter-spacing: 0.03em;
+
+    color: var(--white-color);
+}
+.portfolio-element:hover .desc,
+.portfolio-element:focus .desc {
+    transform: translateY(-100%);
 }
 .portfolio-about {
     padding: 20px 24px;
