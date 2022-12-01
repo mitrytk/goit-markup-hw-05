@@ -480,29 +480,42 @@ header {
     fill: var(--white-color);
 }
 /* Модальное окно */
-
+.is-hidden {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
 .backdrop {
+    visibility: visible;
     position: fixed;
     top: 0;
 
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
+
+
+    transition-property: opacity;
+    transition-duration: 250ms;
+    transition-timing-function: var(--function-animation);
 }
-.backdrop.is-hidden {
-    visibility: hidden;
-    opacity: 0;
-    pointer-events: none;
+.backdrop.is-hidden > .modal{
+    transform: translate(-50%, -50%) scale(0);
 }
 .modal {
     position: absolute;
     left: 50%;
     top: 50%;
-
-    transform: translate(-50%, -50%);
+    
+    transform: translate(-50%, -50%) scale(1);
     width: 528px;
     height: 581px;
     background-color: var(--white-color);
+
+    transition-property: transform;
+    transition-duration: 250ms;
+    transition-timing-function: var(--function-animation);
+
 }
 .close {
     position: absolute;
